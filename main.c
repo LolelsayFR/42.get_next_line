@@ -6,27 +6,48 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 04:26:13 by emaillet          #+#    #+#             */
-/*   Updated: 2024/11/08 06:57:57 by emaillet         ###   ########.fr       */
+/*   Updated: 2024/11/08 11:10:43 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <fcntl.h>
-#include <stdio.h>
+
+void	ft_putstr(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	write(1, s, i);
+}
 
 int	main(void)
 {
-	int		fd;
+	int		fd1;
+	int		fd2;
+	int		fd3;
 	char	*str;
+	int		i;
 
-	fd = open("test", O_RDONLY);
-	while (1)
+	i = 1;
+	fd1 = open("test", O_RDONLY);
+	fd2 = open("test2", O_RDONLY);
+	fd3 = open("test3", O_RDONLY);
+	while (i <= 1)
 	{
-		str = get_next_line(fd);
-		printf("%s", str);
+		if (i == 1)
+			str = get_next_line(fd1);
+		else if (i == 2)
+			str = get_next_line(fd2);
+		else
+			str = get_next_line(fd3);
+		if (str)
+			ft_putstr(str);
 		free(str);
 		if (!str)
-			break ;
+			i++ ;
 	}
 	return (0);
 }

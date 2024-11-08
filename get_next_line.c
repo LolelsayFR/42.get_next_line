@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:42:18 by emaillet          #+#    #+#             */
-/*   Updated: 2024/11/08 06:54:47 by emaillet         ###   ########.fr       */
+/*   Updated: 2024/11/08 11:18:02 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	stash_strlinelen(t_list *stash)
 		{
 			len++;
 			if (stash->content[i] == '\n')
-				return (len);
+				break ;
 			i++;
 		}
 		stash = stash->next;
@@ -81,7 +81,7 @@ void	stash_load(t_list *stash, char **str)
 			if (stash->content[i - 1] == '\n')
 				break ;
 		}
-		if (stash->content[i - 1] == '\n')
+		if (stash->content[i] == '\n')
 			break ;
 		stash = stash->next;
 	}

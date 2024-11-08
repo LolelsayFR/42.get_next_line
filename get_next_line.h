@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:42:23 by emaillet          #+#    #+#             */
-/*   Updated: 2024/11/08 06:57:13 by emaillet         ###   ########.fr       */
+/*   Updated: 2024/11/08 10:03:03 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+void	stash_free(t_list **stash);
+int		stash_strlinelen(t_list *stash);
+void	stash_load(t_list *stash, char **str);
+void	stash_save(int fd, t_list **stash, int *i);
 char	*get_next_line(int fd);
 char	*ft_strchr(const char *s, int c);
 t_list	*ft_lstlast(t_list *lst);
