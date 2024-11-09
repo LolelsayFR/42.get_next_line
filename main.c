@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 04:26:13 by emaillet          #+#    #+#             */
-/*   Updated: 2024/11/09 02:02:47 by emaillet         ###   ########.fr       */
+/*   Updated: 2024/11/09 21:29:29 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(void)
 	int		i;
 
 	i = 1;
-	fd1 = open("labible", O_RDONLY);
+	fd1 = open("test2", O_RDONLY);
 	fd2 = open("test2", O_RDONLY);
 	fd3 = open("test3", O_RDONLY);
 	while (i <= 3)
@@ -43,7 +43,7 @@ int	main(void)
 		else if (i == 2)
 			str = get_next_line(fd2);
 		else
-			str = get_next_line(1);
+			str = get_next_line(fd3);
 		printf("%s", str);
 		//if (str)
 			//ft_putstr(str);

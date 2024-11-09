@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:42:18 by emaillet          #+#    #+#             */
-/*   Updated: 2024/11/09 01:49:50 by emaillet         ###   ########.fr       */
+/*   Updated: 2024/11/09 21:35:50 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	stash_load(t_list *stash, char **str)
 	while (stash)
 	{
 		i = 0;
-		while (stash->content != NULL && stash->content[i])
+		while (stash->content != NULL && stash->content[i] != '\n')
 		{
 			(*str)[j++] = stash->content[i++];
 			if (stash->content[i - 1] == '\n')
