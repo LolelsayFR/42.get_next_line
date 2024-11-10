@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:42:18 by emaillet          #+#    #+#             */
-/*   Updated: 2024/11/10 10:28:07 by emaillet         ###   ########.fr       */
+/*   Updated: 2024/11/10 11:39:49 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,10 @@ void	stash_load(t_list *stash, char **str)
 	while (stash)
 	{
 		i = 0;
-		while (stash->content[i])
+		while (stash->content != NULL && stash->content[i])
 		{
 			(*str)[j++] = stash->content[i++];
-			if ((*str)[j - 1] == '\n')
+			if (stash->content[i - 1] == '\n')
 				break ;
 		}
 		if (stash->content[i] == '\n')
@@ -92,11 +92,11 @@ void	stash_save(int fd, t_list **stash, int *i)
 {
 	char	*buffer;
 
+	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!buffer)
+		return ;
 	while ((!*stash || !ft_strchr(ft_lstlast(*stash)->content, '\n')) && *i > 0)
 	{
-		buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
-		if (!buffer)
-			return ;
 		*i = read(fd, buffer, BUFFER_SIZE);
 		if (*i <= 0)
 		{
@@ -105,8 +105,8 @@ void	stash_save(int fd, t_list **stash, int *i)
 		}
 		buffer[*i] = '\0';
 		ft_lstadd_back(stash, ft_lstnew_str(buffer, *i));
-		free(buffer);
 	}
+	free(buffer);
 }
 
 char	*get_next_line(int fd)
@@ -116,10 +116,10 @@ char	*get_next_line(int fd)
 	int				count;
 
 	count = 1;
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
 	stash_save(fd, &stash, &count);
-	if (!stash)
+	if (stash == NULL)
 		return (NULL);
 	stash_load(stash, &str);
 	stash_free(&stash);

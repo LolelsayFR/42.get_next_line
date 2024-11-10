@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:42:27 by emaillet          #+#    #+#             */
-/*   Updated: 2024/11/09 01:54:49 by emaillet         ###   ########.fr       */
+/*   Updated: 2024/11/10 11:06:52 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_list	*ft_lstnew_str(char *str, int count)
 		return (NULL);
 	dst -> next = NULL;
 	i = 0;
-	while (str[i] && count > i)
+	while (str[i] || count > i)
 	{
 		dst -> content[i] = str[i];
 		i++;
