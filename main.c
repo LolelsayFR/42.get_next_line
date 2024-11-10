@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 04:26:13 by emaillet          #+#    #+#             */
-/*   Updated: 2024/11/09 21:29:29 by emaillet         ###   ########.fr       */
+/*   Updated: 2024/11/10 17:10:59 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ int	main(void)
 	int		i;
 
 	i = 1;
-	fd1 = open("test2", O_RDONLY);
+	fd1 = open("test", O_RDONLY);
 	fd2 = open("test2", O_RDONLY);
 	fd3 = open("test3", O_RDONLY);
-	while (i <= 3)
+	while (i <= 1)
 	{
 		if (i == 1)
 			str = get_next_line(fd1);

@@ -6,11 +6,12 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:42:18 by emaillet          #+#    #+#             */
-/*   Updated: 2024/11/10 11:39:49 by emaillet         ###   ########.fr       */
+/*   Updated: 2024/11/10 18:26:22 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <unistd.h>
 
 void	stash_free(t_list **stash)
 {
@@ -51,10 +52,10 @@ int	stash_strlinelen(t_list *stash)
 		i = 0;
 		while (stash->content[i])
 		{
-			len++;
 			if (stash->content[i] == '\n')
 				break ;
 			i++;
+			len++;
 		}
 		stash = stash->next;
 	}
@@ -81,7 +82,7 @@ void	stash_load(t_list *stash, char **str)
 			if (stash->content[i - 1] == '\n')
 				break ;
 		}
-		if (stash->content[i] == '\n')
+		if (stash->content[i] == '\0' || (*str)[j] == '\n')
 			break ;
 		stash = stash->next;
 	}
@@ -95,7 +96,7 @@ void	stash_save(int fd, t_list **stash, int *i)
 	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return ;
-	while ((!*stash || !ft_strchr(ft_lstlast(*stash)->content, '\n')) && *i > 0)
+	while (!*stash || !ft_strchr(ft_lstlast(*stash)->content, '\n'))
 	{
 		*i = read(fd, buffer, BUFFER_SIZE);
 		if (*i <= 0)
@@ -103,9 +104,9 @@ void	stash_save(int fd, t_list **stash, int *i)
 			free(buffer);
 			return ;
 		}
-		buffer[*i] = '\0';
 		ft_lstadd_back(stash, ft_lstnew_str(buffer, *i));
 	}
+	buffer[*i + 1] = '\0';
 	free(buffer);
 }
 
