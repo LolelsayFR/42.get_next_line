@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:42:18 by emaillet          #+#    #+#             */
-/*   Updated: 2024/11/10 18:26:22 by emaillet         ###   ########.fr       */
+/*   Updated: 2024/11/11 17:55:30 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ int	stash_strlinelen(t_list *stash)
 		i = 0;
 		while (stash->content[i])
 		{
+			len++;
 			if (stash->content[i] == '\n')
 				break ;
 			i++;
-			len++;
 		}
 		stash = stash->next;
 	}
@@ -76,37 +76,37 @@ void	stash_load(t_list *stash, char **str)
 	while (stash)
 	{
 		i = 0;
-		while (stash->content != NULL && stash->content[i])
+		while (stash->content[i])
 		{
 			(*str)[j++] = stash->content[i++];
 			if (stash->content[i - 1] == '\n')
 				break ;
 		}
-		if (stash->content[i] == '\0' || (*str)[j] == '\n')
-			break ;
 		stash = stash->next;
 	}
 	(*str)[j] = '\0';
 }
 
-void	stash_save(int fd, t_list **stash, int *i)
+void	stash_save(int fd, t_list **stash)
 {
 	char	*buffer;
+	int		i;
 
+	i = 1;
 	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return ;
 	while (!*stash || !ft_strchr(ft_lstlast(*stash)->content, '\n'))
 	{
-		*i = read(fd, buffer, BUFFER_SIZE);
-		if (*i <= 0)
+		i = read(fd, buffer, BUFFER_SIZE);
+		if (i <= 0)
 		{
 			free(buffer);
 			return ;
 		}
-		ft_lstadd_back(stash, ft_lstnew_str(buffer, *i));
+		buffer[i] = '\0';
+		ft_lstadd_back(stash, ft_lstnew_str(buffer, i));
 	}
-	buffer[*i + 1] = '\0';
 	free(buffer);
 }
 
@@ -114,15 +114,20 @@ char	*get_next_line(int fd)
 {
 	static t_list	*stash = NULL;
 	char			*str;
-	int				count;
 
-	count = 1;
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	stash_save(fd, &stash, &count);
+	stash_save(fd, &stash);
 	if (stash == NULL)
 		return (NULL);
 	stash_load(stash, &str);
 	stash_free(&stash);
+	if (str[0] == '\0')
+	{
+		stash_free(&stash);
+		stash = NULL;
+		free(str);
+		return (NULL);
+	}
 	return (str);
 }
