@@ -6,12 +6,11 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:42:18 by emaillet          #+#    #+#             */
-/*   Updated: 2024/11/11 17:55:30 by emaillet         ###   ########.fr       */
+/*   Updated: 2024/11/11 22:39:54 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <unistd.h>
 
 void	stash_free(t_list **stash)
 {
@@ -131,3 +130,28 @@ char	*get_next_line(int fd)
 	}
 	return (str);
 }
+
+//#include "get_next_line.h"
+//#include <stdio.h>
+//#include <fcntl.h>
+//
+//int	main(void)
+//{
+//	int		fd1;
+//	int		fd2;
+//	int		fd3;
+//	char	*str;
+//	int		i;
+//
+//	i = 1;
+//	fd1 = open("test", O_RDONLY);
+//	while (1)
+//	{
+//		str = get_next_line(fd1);
+//		printf("%s", str);
+//		free(str);
+//		if (!str)
+//			break ;
+//	}
+//	return (0);
+//}
