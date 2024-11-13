@@ -6,12 +6,15 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:42:18 by emaillet          #+#    #+#             */
-/*   Updated: 2024/11/11 22:39:54 by emaillet         ###   ########.fr       */
+/*   Updated: 2024/11/13 02:41:55 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+/* ************************************************************************** */
+/*  Function for free all nodes, but i keep the content before \n             */
+/* ************************************************************************** */
 void	stash_free(t_list **stash)
 {
 	t_list	*tmp;
@@ -40,6 +43,9 @@ void	stash_free(t_list **stash)
 	*stash = current;
 }
 
+/* ************************************************************************** */
+/*  Just strlen, but for a chainlist                                          */
+/* ************************************************************************** */
 int	stash_strlinelen(t_list *stash)
 {
 	int	len;
@@ -61,6 +67,9 @@ int	stash_strlinelen(t_list *stash)
 	return (len);
 }
 
+/* ************************************************************************** */
+/*  Function for load all nodes in a chainlist, to put them in str            */
+/* ************************************************************************** */
 void	stash_load(t_list *stash, char **str)
 {
 	int	i;
@@ -86,6 +95,9 @@ void	stash_load(t_list *stash, char **str)
 	(*str)[j] = '\0';
 }
 
+/* ************************************************************************** */
+/*  Function for save all buffer's in a chained list                          */
+/* ************************************************************************** */
 void	stash_save(int fd, t_list **stash)
 {
 	char	*buffer;
@@ -109,6 +121,9 @@ void	stash_save(int fd, t_list **stash)
 	free(buffer);
 }
 
+/* ************************************************************************** */
+/*  Main function of the project                                              */
+/* ************************************************************************** */
 char	*get_next_line(int fd)
 {
 	static t_list	*stash = NULL;
@@ -131,20 +146,18 @@ char	*get_next_line(int fd)
 	return (str);
 }
 
-//#include "get_next_line.h"
+/* ************************************************************************** */
+/*  Main for one fd :)                                                        */
+/* ************************************************************************** */
 //#include <stdio.h>
 //#include <fcntl.h>
 //
 //int	main(void)
 //{
 //	int		fd1;
-//	int		fd2;
-//	int		fd3;
 //	char	*str;
-//	int		i;
 //
-//	i = 1;
-//	fd1 = open("test", O_RDONLY);
+//	fd1 = open("labible", O_RDONLY);
 //	while (1)
 //	{
 //		str = get_next_line(fd1);
@@ -155,3 +168,7 @@ char	*get_next_line(int fd)
 //	}
 //	return (0);
 //}
+
+/* ************************************************************************** */
+/*  End of file                                                               */
+/* ************************************************************************** */
