@@ -6,14 +6,14 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:42:27 by emaillet          #+#    #+#             */
-/*   Updated: 2024/11/18 15:59:35 by emaillet         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:50:19 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
 /* ************************************************************************** */
-/*  Just substr without strlen                                                */
+/*	Just substr without strlen                                            */
 /* ************************************************************************** */
 char	*ft_substrlen(const char *s, unsigned int start)
 {
@@ -38,7 +38,7 @@ char	*ft_substrlen(const char *s, unsigned int start)
 }
 
 /* ************************************************************************** */
-/*  Locate char inside str                                                    */
+/*	Locate char inside str                                                */
 /* ************************************************************************** */
 int	ft_strichr(const char *s, int c)
 {
@@ -57,7 +57,7 @@ int	ft_strichr(const char *s, int c)
 }
 
 /* ************************************************************************** */
-/*  Return last node of a chainlist                                           */
+/*	Return last node of a chainlist                                       */
 /* ************************************************************************** */
 t_list	*ft_lstlast(t_list *lst)
 {
@@ -71,13 +71,15 @@ t_list	*ft_lstlast(t_list *lst)
 }
 
 /* ************************************************************************** */
-/*  Create node with allocated str inside                                     */
+/*	Create node with allocated str inside                                 */
 /* ************************************************************************** */
 t_list	*ft_lstnew_str(char *str, int count)
 {
 	t_list	*dst;
 	int		i;
 
+	if (count == -1)
+		return (NULL);
 	dst = malloc(sizeof(t_list));
 	if (!dst)
 		return (NULL);
@@ -96,12 +98,14 @@ t_list	*ft_lstnew_str(char *str, int count)
 }
 
 /* ************************************************************************** */
-/*  Add node after last node of chainlist                                     */
+/*	Add node after last node of chainlist                                 */
 /* ************************************************************************** */
 void	ft_lstadd_back(t_list **lst, t_list *lnew)
 {
 	t_list	*to_end;
 
+	if (!lnew)
+		return ;
 	if (!*lst)
 	{
 		*lst = lnew;

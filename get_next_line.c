@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:42:18 by emaillet          #+#    #+#             */
-/*   Updated: 2024/11/18 15:47:28 by emaillet         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:48:39 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	stash_save(int fd, t_list **stash)
 	char	*buffer;
 	int		i;
 
-	i = 1;
+	i = 0;
 	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return ;
@@ -112,6 +112,8 @@ void	stash_save(int fd, t_list **stash)
 		i = read(fd, buffer, BUFFER_SIZE);
 		if (i <= 0)
 		{
+			if (i == -1)
+				stash_free(stash);
 			free(buffer);
 			return ;
 		}
@@ -157,15 +159,20 @@ char	*get_next_line(int fd)
 //{
 //	int		fd1;
 //	char	*str;
+//	int		i;
 //
-//	fd1 = open("labible", O_RDONLY);
-//	while (1)
+//	fd1 = open("test", O_RDONLY);
+//	i = 4;
+//	while (i)
 //	{
+//		if (i == 2)
+//			close(fd1);
+//		if (i == 5)
+//			fd1 = open("test", O_RDONLY);
 //		str = get_next_line(fd1);
 //		printf("%s", str);
-//		if (!str)
-//			break ;
 //		free(str);
+//		i--;
 //	}
 //	return (0);
 //}

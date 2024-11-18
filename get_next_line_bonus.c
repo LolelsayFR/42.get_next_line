@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:42:18 by emaillet          #+#    #+#             */
-/*   Updated: 2024/11/18 16:01:08 by emaillet         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:49:48 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,8 @@ void	stash_save(int fd, t_list **stash)
 		i = read(fd, buffer, BUFFER_SIZE);
 		if (i <= 0)
 		{
+			if (i == -1)
+				stash_free(stash);
 			free(buffer);
 			return ;
 		}

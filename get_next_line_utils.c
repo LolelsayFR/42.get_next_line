@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:42:27 by emaillet          #+#    #+#             */
-/*   Updated: 2024/11/18 15:59:55 by emaillet         ###   ########.fr       */
+/*   Updated: 2024/11/18 17:20:20 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ t_list	*ft_lstnew_str(char *str, int count)
 	t_list	*dst;
 	int		i;
 
+	if (count == -1)
+		return (NULL);
 	dst = malloc(sizeof(t_list));
 	if (!dst)
 		return (NULL);
@@ -102,6 +104,8 @@ void	ft_lstadd_back(t_list **lst, t_list *lnew)
 {
 	t_list	*to_end;
 
+	if (!lnew)
+		return ;
 	if (!*lst)
 	{
 		*lst = lnew;
