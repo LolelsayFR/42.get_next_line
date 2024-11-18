@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:42:18 by emaillet          #+#    #+#             */
-/*   Updated: 2024/11/13 02:41:55 by emaillet         ###   ########.fr       */
+/*   Updated: 2024/11/18 15:47:28 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ void	stash_free(t_list **stash)
 	t_list	*tmp;
 	t_list	*current;
 	char	*new_content;
-	char	*newline_pos;
+	int		newline_i;
 	int		start;
 
 	current = *stash;
 	while (current)
 	{
-		newline_pos = ft_strchr(current->content, '\n');
-		if (newline_pos)
+		newline_i = ft_strichr(current->content, '\n');
+		if (newline_i >= 0)
 		{
-			start = newline_pos - current->content + 1;
+			start = newline_i + 1;
 			new_content = ft_substrlen(current->content, start);
 			free(current->content);
 			current->content = new_content;
@@ -107,7 +107,7 @@ void	stash_save(int fd, t_list **stash)
 	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return ;
-	while (!*stash || !ft_strchr(ft_lstlast(*stash)->content, '\n'))
+	while (!*stash || ft_strichr(ft_lstlast(*stash)->content, '\n') == -1)
 	{
 		i = read(fd, buffer, BUFFER_SIZE);
 		if (i <= 0)
@@ -129,16 +129,17 @@ char	*get_next_line(int fd)
 	static t_list	*stash = NULL;
 	char			*str;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	stash_save(fd, &stash);
 	if (stash == NULL)
 		return (NULL);
 	stash_load(stash, &str);
+	if (!str)
+		return (NULL);
 	stash_free(&stash);
 	if (str[0] == '\0')
 	{
-		stash_free(&stash);
 		stash = NULL;
 		free(str);
 		return (NULL);
@@ -162,9 +163,9 @@ char	*get_next_line(int fd)
 //	{
 //		str = get_next_line(fd1);
 //		printf("%s", str);
-//		free(str);
 //		if (!str)
 //			break ;
+//		free(str);
 //	}
 //	return (0);
 //}

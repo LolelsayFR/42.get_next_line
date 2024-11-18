@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:42:27 by emaillet          #+#    #+#             */
-/*   Updated: 2024/11/12 23:05:13 by emaillet         ###   ########.fr       */
+/*   Updated: 2024/11/18 15:59:35 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*ft_substrlen(const char *s, unsigned int start)
 /* ************************************************************************** */
 /*  Locate char inside str                                                    */
 /* ************************************************************************** */
-char	*ft_strchr(const char *s, int c)
+int	ft_strichr(const char *s, int c)
 {
 	size_t	i;
 
@@ -52,8 +52,8 @@ char	*ft_strchr(const char *s, int c)
 		i++;
 	}
 	if (s[i] == (char) c)
-		return ((char *) s + i);
-	return (NULL);
+		return (i);
+	return (-1);
 }
 
 /* ************************************************************************** */

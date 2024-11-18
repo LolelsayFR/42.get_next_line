@@ -6,14 +6,14 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:42:27 by emaillet          #+#    #+#             */
-/*   Updated: 2024/11/12 23:05:54 by emaillet         ###   ########.fr       */
+/*   Updated: 2024/11/18 15:59:55 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
 /* ************************************************************************** */
-/*  Just substr without strlen                                                */
+/*	Just substr without strlen                                            */
 /* ************************************************************************** */
 char	*ft_substrlen(const char *s, unsigned int start)
 {
@@ -38,9 +38,9 @@ char	*ft_substrlen(const char *s, unsigned int start)
 }
 
 /* ************************************************************************** */
-/*  Locate char inside str                                                    */
+/*	Locate char inside str                                                */
 /* ************************************************************************** */
-char	*ft_strchr(const char *s, int c)
+int	ft_strichr(const char *s, int c)
 {
 	size_t	i;
 
@@ -52,12 +52,12 @@ char	*ft_strchr(const char *s, int c)
 		i++;
 	}
 	if (s[i] == (char) c)
-		return ((char *) s + i);
-	return (NULL);
+		return (i);
+	return (-1);
 }
 
 /* ************************************************************************** */
-/*  Return last node of a chainlist                                           */
+/*	Return last node of a chainlist                                       */
 /* ************************************************************************** */
 t_list	*ft_lstlast(t_list *lst)
 {
@@ -71,7 +71,7 @@ t_list	*ft_lstlast(t_list *lst)
 }
 
 /* ************************************************************************** */
-/*  Create node with allocated str inside                                     */
+/*	Create node with allocated str inside                                 */
 /* ************************************************************************** */
 t_list	*ft_lstnew_str(char *str, int count)
 {
@@ -96,7 +96,7 @@ t_list	*ft_lstnew_str(char *str, int count)
 }
 
 /* ************************************************************************** */
-/*  Add node after last node of chainlist                                     */
+/*	Add node after last node of chainlist                                 */
 /* ************************************************************************** */
 void	ft_lstadd_back(t_list **lst, t_list *lnew)
 {

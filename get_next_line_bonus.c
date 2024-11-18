@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:42:18 by emaillet          #+#    #+#             */
-/*   Updated: 2024/11/13 02:11:26 by emaillet         ###   ########.fr       */
+/*   Updated: 2024/11/18 16:01:08 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ void	stash_free(t_list **stash)
 	t_list	*tmp;
 	t_list	*current;
 	char	*new_content;
-	char	*newline_pos;
+	int		newline_i;
 	int		start;
 
 	current = *stash;
 	while (current)
 	{
-		newline_pos = ft_strchr(current->content, '\n');
-		if (newline_pos)
+		newline_i = ft_strichr(current->content, '\n');
+		if (newline_i >= 0)
 		{
-			start = newline_pos - current->content + 1;
+			start = newline_i + 1;
 			new_content = ft_substrlen(current->content, start);
 			free(current->content);
 			current->content = new_content;
@@ -107,7 +107,7 @@ void	stash_save(int fd, t_list **stash)
 	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return ;
-	while (!*stash || !ft_strchr(ft_lstlast(*stash)->content, '\n'))
+	while (!*stash || ft_strichr(ft_lstlast(*stash)->content, '\n') == -1)
 	{
 		i = read(fd, buffer, BUFFER_SIZE);
 		if (i <= 0)
@@ -129,16 +129,17 @@ char	*get_next_line(int fd)
 	static t_list	*stash[1024] = {NULL};
 	char			*str;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	stash_save(fd, &stash[fd]);
 	if (stash[fd] == NULL)
 		return (NULL);
 	stash_load(stash[fd], &str);
+	if (!str)
+		return (NULL);
 	stash_free(&stash[fd]);
 	if (str[0] == '\0')
 	{
-		stash_free(&stash[fd]);
 		stash[fd] = NULL;
 		free(str);
 		return (NULL);
@@ -149,36 +150,36 @@ char	*get_next_line(int fd)
 /* ************************************************************************** */
 /*  Main for multiple fd :)                                                   */
 /* ************************************************************************** */
-//#include <stdio.h>
-//#include <fcntl.h>
-//
-//int	main(void)
-//{
-//	int		fd1;
-//	int		fd2;
-//	int		fd3;
-//	char	*str;
-//	int		i;
-//
-//	i = 1;
-//	fd1 = open("test", O_RDONLY);
-//	fd2 = open("test2", O_RDONLY);
-//	fd3 = open("test3", O_RDONLY);
-//	while (i != 4)
-//	{
-//		str = get_next_line(fd1);
-//		printf("%s", str);
-//		free(str);
-//		str = get_next_line(fd2);
-//		printf("%s", str);
-//		free(str);
-//		str = get_next_line(fd3);
-//		printf("%s", str);
-//		free(str);
-//		i++;
-//	}
-//	return (0);
-//}
+// #include <stdio.h>
+// #include <fcntl.h>
+
+// int	main(void)
+// {
+// 	int		fd1;
+// 	int		fd2;
+// 	int		fd3;
+// 	char	*str;
+// 	int		i;
+
+// 	i = 1;
+// 	fd1 = open("test", O_RDONLY);
+// 	fd2 = open("test2", O_RDONLY);
+// 	fd3 = open("test3", O_RDONLY);
+// 	while (i != 50)
+// 	{
+// 		str = get_next_line(fd1);
+// 		printf("%s", str);
+// 		free(str);
+// 		str = get_next_line(fd2);
+// 		printf("%s", str);
+// 		free(str);
+// 		str = get_next_line(fd3);
+// 		printf("%s", str);
+// 		free(str);
+// 		i++;
+// 	}
+// 	return (0);
+// }
 
 /* ************************************************************************** */
 /*  End of file                                                               */

@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:42:23 by emaillet          #+#    #+#             */
-/*   Updated: 2024/11/12 23:06:04 by emaillet         ###   ########.fr       */
+/*   Updated: 2024/11/18 15:58:51 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		stash_strlinelen(t_list *stash);
 void	stash_load(t_list *stash, char **str);
 void	stash_save(int fd, t_list **stash);
 char	*get_next_line(int fd);
-char	*ft_strchr(const char *s, int c);
+int		ft_strichr(const char *s, int c);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *lnew);
 t_list	*ft_lstnew_str(char *str, int count);
