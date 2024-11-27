@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:42:27 by emaillet          #+#    #+#             */
-/*   Updated: 2024/11/27 19:19:29 by emaillet         ###   ########.fr       */
+/*   Updated: 2024/11/27 22:53:27 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	ft_strichr(const char *s, int c)
 /* ************************************************************************** */
 /*	Return last node of a chainlist                                       */
 /* ************************************************************************** */
-t_strlist	*ft_lstlast(t_strlist *lst)
+t_strlist	*ft_lststrlast(t_strlist *lst)
 {
 	while (lst)
 	{
@@ -111,7 +111,7 @@ void	ft_lstadd_back(t_strlist **lst, t_strlist *lnew)
 		*lst = lnew;
 		return ;
 	}
-	to_end = ft_lstlast(*lst);
+	to_end = ft_lststrlast(*lst);
 	to_end->next = lnew;
 }
 

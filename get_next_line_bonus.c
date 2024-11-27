@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:42:18 by emaillet          #+#    #+#             */
-/*   Updated: 2024/11/27 19:19:56 by emaillet         ###   ########.fr       */
+/*   Updated: 2024/11/27 22:54:21 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	stash_save(int fd, t_strlist **stash)
 	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return ;
-	while (!*stash || ft_strichr(ft_lstlast(*stash)->content, '\n') == -1)
+	while (!*stash || ft_strichr(ft_lststrlast(*stash)->content, '\n') == -1)
 	{
 		i = read(fd, buffer, BUFFER_SIZE);
 		if (i <= 0)
