@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:42:23 by emaillet          #+#    #+#             */
-/*   Updated: 2024/11/18 15:58:51 by emaillet         ###   ########.fr       */
+/*   Updated: 2024/11/27 19:19:16 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,20 @@
 
 typedef struct s_strlist
 {
-	char			*content;
+	char				*content;
 	struct s_strlist	*next;
 }	t_strlist;
 
-void	stash_free(t_strlist **stash);
-int		stash_strlinelen(t_strlist *stash);
-void	stash_load(t_strlist *stash, char **str);
-void	stash_save(int fd, t_strlist **stash);
-char	*get_next_line(int fd);
-int		ft_strichr(const char *s, int c);
+void		stash_free(t_strlist **stash);
+int			stash_strlinelen(t_strlist *stash);
+void		stash_load(t_strlist *stash, char **str);
+void		stash_save(int fd, t_strlist **stash);
+char		*get_next_line(int fd);
+int			ft_strichr(const char *s, int c);
 t_strlist	*ft_lstlast(t_strlist *lst);
-void	ft_lstadd_back(t_strlist **lst, t_strlist *lnew);
+void		ft_lstadd_back(t_strlist **lst, t_strlist *lnew);
 t_strlist	*ft_lstnew_str(char *str, int count);
-char	*ft_substrlen(const char *s, unsigned int start);
+char		*ft_substrlen(const char *s, unsigned int start);
 
 #endif
 

@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:42:27 by emaillet          #+#    #+#             */
-/*   Updated: 2024/11/18 17:20:20 by emaillet         ###   ########.fr       */
+/*   Updated: 2024/11/27 19:19:29 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ t_strlist	*ft_lstlast(t_strlist *lst)
 t_strlist	*ft_lstnew_str(char *str, int count)
 {
 	t_strlist	*dst;
-	int		i;
+	int			i;
 
 	if (count == -1)
 		return (NULL);

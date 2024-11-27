@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:42:18 by emaillet          #+#    #+#             */
-/*   Updated: 2024/11/18 17:48:39 by emaillet         ###   ########.fr       */
+/*   Updated: 2024/11/27 19:20:11 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	stash_free(t_strlist **stash)
 {
 	t_strlist	*tmp;
 	t_strlist	*current;
-	char	*new_content;
-	int		newline_i;
-	int		start;
+	char		*new_content;
+	int			newline_i;
+	int			start;
 
 	current = *stash;
 	while (current)
@@ -129,7 +129,7 @@ void	stash_save(int fd, t_strlist **stash)
 char	*get_next_line(int fd)
 {
 	static t_strlist	*stash = NULL;
-	char			*str;
+	char				*str;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
