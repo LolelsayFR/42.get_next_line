@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:42:27 by emaillet          #+#    #+#             */
-/*   Updated: 2024/11/27 22:53:36 by emaillet         ###   ########.fr       */
+/*   Updated: 2024/11/27 23:04:48 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ t_strlist	*ft_lstnew_str(char *str, int count)
 /* ************************************************************************** */
 /*	Add node after last node of chainlist                                 */
 /* ************************************************************************** */
-void	ft_lstadd_back(t_strlist **lst, t_strlist *lnew)
+void	ft_lststradd_back(t_strlist **lst, t_strlist *lnew)
 {
 	t_strlist	*to_end;
 

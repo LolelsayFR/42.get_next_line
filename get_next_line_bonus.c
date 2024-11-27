@@ -6,7 +6,7 @@
 /*   By: emaillet <emaillet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:42:18 by emaillet          #+#    #+#             */
-/*   Updated: 2024/11/27 22:54:21 by emaillet         ###   ########.fr       */
+/*   Updated: 2024/11/27 23:04:29 by emaillet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void	stash_save(int fd, t_strlist **stash)
 			return ;
 		}
 		buffer[i] = '\0';
-		ft_lstadd_back(stash, ft_lstnew_str(buffer, i));
+		ft_lststradd_back(stash, ft_lstnew_str(buffer, i));
 	}
 	free(buffer);
 }
