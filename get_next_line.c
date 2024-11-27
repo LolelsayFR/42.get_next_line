@@ -15,10 +15,10 @@
 /* ************************************************************************** */
 /*  Function for free all nodes, but i keep the content before \n             */
 /* ************************************************************************** */
-void	stash_free(t_list **stash)
+void	stash_free(t_strlist **stash)
 {
-	t_list	*tmp;
-	t_list	*current;
+	t_strlist	*tmp;
+	t_strlist	*current;
 	char	*new_content;
 	int		newline_i;
 	int		start;
@@ -46,7 +46,7 @@ void	stash_free(t_list **stash)
 /* ************************************************************************** */
 /*  Just strlen, but for a chainlist                                          */
 /* ************************************************************************** */
-int	stash_strlinelen(t_list *stash)
+int	stash_strlinelen(t_strlist *stash)
 {
 	int	len;
 	int	i;
@@ -70,7 +70,7 @@ int	stash_strlinelen(t_list *stash)
 /* ************************************************************************** */
 /*  Function for load all nodes in a chainlist, to put them in str            */
 /* ************************************************************************** */
-void	stash_load(t_list *stash, char **str)
+void	stash_load(t_strlist *stash, char **str)
 {
 	int	i;
 	int	j;
@@ -98,7 +98,7 @@ void	stash_load(t_list *stash, char **str)
 /* ************************************************************************** */
 /*  Function for save all buffer's in a chained list                          */
 /* ************************************************************************** */
-void	stash_save(int fd, t_list **stash)
+void	stash_save(int fd, t_strlist **stash)
 {
 	char	*buffer;
 	int		i;
@@ -128,7 +128,7 @@ void	stash_save(int fd, t_list **stash)
 /* ************************************************************************** */
 char	*get_next_line(int fd)
 {
-	static t_list	*stash = NULL;
+	static t_strlist	*stash = NULL;
 	char			*str;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
