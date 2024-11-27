@@ -59,7 +59,7 @@ int	ft_strichr(const char *s, int c)
 /* ************************************************************************** */
 /*	Return last node of a chainlist                                       */
 /* ************************************************************************** */
-t_list	*ft_lstlast(t_list *lst)
+t_strlist	*ft_lstlast(t_strlist *lst)
 {
 	while (lst)
 	{
@@ -73,14 +73,14 @@ t_list	*ft_lstlast(t_list *lst)
 /* ************************************************************************** */
 /*	Create node with allocated str inside                                 */
 /* ************************************************************************** */
-t_list	*ft_lstnew_str(char *str, int count)
+t_strlist	*ft_lstnew_str(char *str, int count)
 {
-	t_list	*dst;
+	t_strlist	*dst;
 	int		i;
 
 	if (count == -1)
 		return (NULL);
-	dst = malloc(sizeof(t_list));
+	dst = malloc(sizeof(t_strlist));
 	if (!dst)
 		return (NULL);
 	dst -> content = malloc((count + 1) * sizeof(char));
@@ -100,9 +100,9 @@ t_list	*ft_lstnew_str(char *str, int count)
 /* ************************************************************************** */
 /*	Add node after last node of chainlist                                 */
 /* ************************************************************************** */
-void	ft_lstadd_back(t_list **lst, t_list *lnew)
+void	ft_lstadd_back(t_strlist **lst, t_strlist *lnew)
 {
-	t_list	*to_end;
+	t_strlist	*to_end;
 
 	if (!lnew)
 		return ;
