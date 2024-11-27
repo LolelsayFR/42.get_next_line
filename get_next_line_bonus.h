@@ -20,11 +20,11 @@
 #  define BUFFER_SIZE 5
 # endif
 
-typedef struct s_list
+typedef struct s_strlist
 {
 	char			*content;
-	struct s_list	*next;
-}	t_list;
+	struct s_strlist	*next;
+}	t_strlist;
 
 void	stash_free(t_list **stash);
 int		stash_strlinelen(t_list *stash);
